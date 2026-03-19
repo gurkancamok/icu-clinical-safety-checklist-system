@@ -109,7 +109,7 @@ Future iterations may include:
 
 ## 📄 Intended Use
 
-AEGIS is designed to support structured clinical decision-making processes.
+ICU Clinical Safety Checklist System is designed to support structured clinical decision-making processes.
 
 Final clinical judgment remains the responsibility of qualified healthcare professionals.
 
