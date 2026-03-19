@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ICU Clinical Safety System</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+
+body{
+  margin:0;
+  font-family:'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #0f0c29, #090218, #02010a);
+  color:white;
+}
+
+.header{
+  text-align:center;
+  padding:25px;
+  font-size:26px;
+  font-weight:600;
+  background: linear-gradient(90deg,#a855f7,#06b6d4);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px;
+}
+
+.card{
+  background: rgba(255,255,255,0.04);
+  border-radius:18px;
+  margin-bottom:18px;
+  border:1px solid rgba(255,255,255,0.08);
+  box-shadow:0 0 20px rgba(168,85,247,0.15);
+}
+
+.card-header{
+  padding:16px;
+  cursor:pointer;
+  font-weight:600;
+  display:flex;
+  justify-content:space-between;
+}
+
+.card-body{
+  display:none;
+  padding:15px;
+}
+
+label{
+  display:block;
+  padding:8px;
+}
+
+button{
+  background: linear-gradient(90deg,#a855f7,#06b6d4);
+  border:none;
+  padding:10px 15px;
+  border-radius:12px;
+  color:white;
+  cursor:pointer;
+  margin-top:12px;
+}
+
+.result{
+  margin-top:10px;
+  font-weight:bold;
+  white-space:pre-line;
+}
+
+.low{color:#22c55e;}
+.medium{color:#eab308;}
+.high{color:#ef4444;}
+
+.footer{
+  text-align:center;
+  margin-top:40px;
+  opacity:0.7;
+  font-size:14px;
+  line-height:1.6;
+}
+
+.ref-list{
+  font-size:13px;
+  opacity:0.9;
+  line-height:1.6;
+}
+
+.ref-list a{
+  color:#06b6d4;
+  text-decoration:none;
+}
+
+.ref-list a:hover{
+  text-decoration:underline;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">ICU Clinical Safety System</div>
+
+<div class="container">
+
+<!-- GCS -->
+<div class="card">
+<div class="card-header" onclick="toggle(this)">GCS (Glasgow Coma Scale) <span>+</span></div>
+<div class="card-body">
+
+<h4>Eye</h4>
+<label><input type="radio" name="gcs_eye" value="4"> Spontaneous</label>
+<label><input type="radio" name="gcs_eye" value="3"> Speech</label>
+<label><input type="radio" name="gcs_eye" value="2"> Pain</label>
+<label><input type="radio" name="gcs_eye" value="1"> None</label>
+
+<h4>Verbal</h4>
+<label><input type="radio" name="gcs_verbal" value="5"> Oriented</label>
+<label><input type="radio" name="gcs_verbal" value="4"> Confused</label>
+<label><input type="radio" name="gcs_verbal" value="3"> Inappropriate</label>
+
+<h4>Motor</h4>
+<label><input type="radio" name="gcs_motor" value="6"> Obeys</label>
+<label><input type="radio" name="gcs_motor" value="4"> Withdraws</label>
+
+<button onclick="calcGCS()">Calculate</button>
+<div class="result" id="gcs-result"></div>
+</div>
+</div>
+
+<!-- BRADEN -->
+<div class="card">
+<div class="card-header" onclick="toggle(this)">Braden Scale <span>+</span></div>
+<div class="card-body braden">
+<label><input type="checkbox"> Sensory</label>
+<label><input type="checkbox"> Moisture</label>
+<label><input type="checkbox"> Activity</label>
+<label><input type="checkbox"> Mobility</label>
+<label><input type="checkbox"> Nutrition</label>
+
+<button onclick="calcBraden()">Calculate</button>
+<div class="result" id="braden-result"></div>
+</div>
+</div>
+
+<!-- MORSE -->
+<div class="card">
+<div class="card-header" onclick="toggle(this)">Morse Fall Risk <span>+</span></div>
+<div class="card-body morse">
+<label><input type="checkbox" value="25"> Fall history</label>
+<label><input type="checkbox" value="20"> Secondary diagnosis</label>
+<label><input type="checkbox" value="15"> Ambulatory aid</label>
+
+<button onclick="calcMorse()">Calculate</button>
+<div class="result" id="morse-result"></div>
+</div>
+</div>
+
+<!-- RASS -->
+<div class="card">
+<div class="card-header" onclick="toggle(this)">RASS (Sedation Scale) <span>+</span></div>
+<div class="card-body">
+<label><input type="radio" name="rass" value="4"> +4 Combative</label>
+<label><input type="radio" name="rass" value="0"> 0 Alert</label>
+<label><input type="radio" name="rass" value="-2"> -2 Light Sedation</label>
+<label><input type="radio" name="rass" value="-5"> -5 Deep Sedation</label>
+
+<button onclick="calcRASS()">Calculate</button>
+<div class="result" id="rass-result"></div>
+</div>
+</div>
+
+<!-- REFERENCES -->
+<div class="card">
+<div class="card-header" onclick="toggle(this)">References (DOI) <span>+</span></div>
+<div class="card-body">
+<div class="ref-list">
+
+1. Teasdale G, Jennett B. Lancet, 1974<br>
+<a href="https://doi.org/10.1016/S0140-6736(74)91639-0" target="_blank">https://doi.org/10.1016/S0140-6736(74)91639-0</a>
+<br><br>
+
+2. Bergstrom N et al. Nursing Research, 1987<br>
+<a href="https://doi.org/10.1097/00006199-198707000-00002" target="_blank">https://doi.org/10.1097/00006199-198707000-00002</a>
+<br><br>
+
+3. Morse JM et al. Canadian Journal on Aging, 1989<br>
+<a href="https://doi.org/10.1017/S0714980800008576" target="_blank">https://doi.org/10.1017/S0714980800008576</a>
+<br><br>
+
+4. Sessler CN et al. AJRCCM, 2002<br>
+<a href="https://doi.org/10.1164/ajrccm.166.10.2107138" target="_blank">https://doi.org/10.1164/ajrccm.166.10.2107138</a>
+
+</div>
+</div>
+</div>
+
+<button onclick="pdf()">Export PDF</button>
+
+<div class="footer">
+Gürkan Çamok<br>
+Clinical Innovation & Digital Health Systems
+</div>
+
+</div>
+
+<script>
+
+function toggle(el){
+  let body = el.nextElementSibling;
+  let icon = el.querySelector("span");
+
+  if(body.style.display==="block"){
+    body.style.display="none";
+    icon.innerText="+";
+  }else{
+    body.style.display="block";
+    icon.innerText="−";
+  }
+}
+
+// GCS
+function calcGCS(){
+  let eye=document.querySelector('input[name="gcs_eye"]:checked');
+  let verbal=document.querySelector('input[name="gcs_verbal"]:checked');
+  let motor=document.querySelector('input[name="gcs_motor"]:checked');
+
+  if(!eye || !verbal || !motor){
+    alert("Please select all GCS components");
+    return;
+  }
+
+  let total = +eye.value + +verbal.value + +motor.value;
+  let res=document.getElementById("gcs-result");
+
+  if(total>=13){
+    res.className="result low";
+    res.innerText=`Score: ${total}\nMild\nAction: Monitor`;
+  }
+  else if(total>=9){
+    res.className="result medium";
+    res.innerText=`Score: ${total}\nModerate\nAction: Frequent neurological assessment`;
+  }
+  else{
+    res.className="result high";
+    res.innerText=`Score: ${total}\nSevere\nAction: Airway protection & ICU management`;
+  }
+}
+
+// BRADEN
+function calcBraden(){
+  let count=document.querySelectorAll(".braden input:checked").length;
+  let res=document.getElementById("braden-result");
+
+  if(count<=2){
+    res.className="result high";
+    res.innerText="High risk\nAction: Pressure ulcer prevention protocol";
+  }else{
+    res.className="result medium";
+    res.innerText="Moderate risk\nAction: Reposition every 2 hours";
+  }
+}
+
+// MORSE
+function calcMorse(){
+  let sum=0;
+  document.querySelectorAll(".morse input:checked").forEach(c=>{
+    sum+=parseInt(c.value||0);
+  });
+
+  let res=document.getElementById("morse-result");
+
+  if(sum<25){
+    res.className="result low";
+    res.innerText="Low risk\nAction: Standard precautions";
+  }else if(sum<45){
+    res.className="result medium";
+    res.innerText="Moderate risk\nAction: Assist ambulation";
+  }else{
+    res.className="result high";
+    res.innerText="High risk\nAction: Fall prevention protocol";
+  }
+}
+
+// RASS
+function calcRASS(){
+  let r=document.querySelector('input[name="rass"]:checked');
+  if(!r){ alert("Select RASS score"); return; }
+
+  let v=parseInt(r.value);
+  let res=document.getElementById("rass-result");
+
+  if(v>0){
+    res.className="result high";
+    res.innerText="Agitated\nAction: Evaluate sedation need";
+  }else if(v===0){
+    res.className="result low";
+    res.innerText="Alert\nAction: Maintain current plan";
+  }else{
+    res.className="result medium";
+    res.innerText="Sedated\nAction: Monitor sedation level";
+  }
+}
+
+// PDF
+async function pdf(){
+  const { jsPDF } = window.jspdf;
+  const doc=new jsPDF();
+
+  let y=10;
+  document.querySelectorAll(".result").forEach(r=>{
+    doc.text(r.innerText,10,y);
+    y+=10;
+  });
+
+  doc.save("ICU_Report.pdf");
+}
+
+</script>
+
+</body>
+</html>
