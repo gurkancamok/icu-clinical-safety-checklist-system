@@ -107,11 +107,11 @@ Future iterations may include:
 
 ---
 
-## ⚠️ Disclaimer
+## 📄 Intended Use
 
-This system is intended for **educational, research, and demonstration purposes only.**
+AEGIS is designed to support structured clinical decision-making processes.
 
-It is **not intended for real-world clinical decision-making or direct patient care.**
+Final clinical judgment remains the responsibility of qualified healthcare professionals.
 
 ---
 
