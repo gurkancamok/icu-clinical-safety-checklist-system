@@ -1,94 +1,128 @@
-# 🏥 ICU Clinical Safety Checklist System
+# 🏥 ICU Clinical Safety System
 
-![Digital Health](https://img.shields.io/badge/Digital%20Health-Clinical%20Safety-blue)
+![Digital Health](https://img.shields.io/badge/Digital%20Health-Clinical%20Decision%20Support-blue)
 ![Patient Safety](https://img.shields.io/badge/Focus-Patient%20Safety-green)
-![Healthcare Technology](https://img.shields.io/badge/Domain-Healthcare%20Technology-purple)
-![Prototype](https://img.shields.io/badge/Status-Prototype-orange)
+![Healthcare Technology](https://img.shields.io/badge/Domain-HealthTech-purple)
+![Status](https://img.shields.io/badge/Status-Prototype-orange)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
 ---
 
-## Overview
-
-**ICU Clinical Safety Checklist System** is a prototype digital health tool designed to support standardized patient safety workflows in intensive care environments.
-
-The system translates traditional ICU safety checklist practices into an interactive digital interface that allows clinicians to perform structured safety reviews during daily ICU rounds.
-
-Checklist-based protocols are widely used in intensive care units to reduce preventable complications, improve care consistency, and support effective team communication. This project explores how such safety workflows can be transformed into simple and scalable digital health tools.
+## 🚀 Live Demo
+https://gurkancamok.github.io/icu-clinical-safety-checklist-system/
 
 ---
 
-## Project Goals
+## 🧠 Overview
 
-This prototype explores how digital tools can support safer clinical workflows by enabling:
+**ICU Clinical Safety System** is a prototype **clinical decision support system (CDSS)** designed to enhance patient safety, standardize ICU workflows, and support structured clinical assessments in intensive care settings.
 
-- Standardized ICU safety reviews  
-- Structured daily patient safety checks  
-- Reduced risk of missed clinical safety steps  
-- Improved visibility of critical care tasks  
-- Digital transformation of traditional ICU checklists  
+The system transforms established clinical scoring tools into an interactive digital interface, enabling healthcare professionals to perform rapid, structured, and reproducible patient evaluations during ICU rounds.
 
 ---
 
-## Core Features
+## 🎯 Clinical Value
+
+This system integrates widely accepted clinical assessment tools into a single digital platform:
+
+- **Glasgow Coma Scale (GCS)** – Neurological assessment  
+- **Braden Scale** – Pressure injury risk  
+- **Morse Fall Scale** – Fall risk evaluation  
+- **RASS (Sedation Scale)** – Sedation and agitation monitoring  
+
+Each assessment provides:
+
+- Automated scoring  
+- Risk classification (Low / Moderate / High)  
+- Clinical interpretation  
+- Suggested clinical actions  
+
+---
+
+## ⚙️ Core Features
 
 | Feature | Description |
-|--------|-------------|
-| Structured Checklist | Digital ICU safety checklist interface |
-| Completion Tracking | Visual indicators showing checklist completion |
-| Progress Monitoring | Checklist completion tracking |
-| ICU Safety Focus | Designed around common ICU safety practices |
-| Lightweight Prototype | Built with simple web technologies |
+|--------|------------|
+| Clinical Decision Support | Converts scores into actionable clinical recommendations |
+| Structured Assessment | Standardized ICU evaluation workflow |
+| Risk Stratification | Color-coded risk levels (low, medium, high) |
+| Interactive UI | Expandable panels for each clinical tool |
+| Lightweight Architecture | Runs entirely in browser (no backend required) |
+| PDF Export | Generate quick clinical summaries |
 
 ---
 
-## Example Checklist Components
+## 🏥 Clinical Use Case
 
-The checklist structure reflects common safety elements reviewed during ICU rounds:
+Designed for use during:
 
-- Ventilator safety review  
-- Central line assessment  
-- Catheter necessity evaluation  
-- Infection prevention measures  
-- Sedation and analgesia review  
-- Nutrition plan verification  
-- Daily care plan confirmation  
+- ICU daily rounds  
+- Rapid patient safety checks  
+- Structured clinical evaluations  
+- Training and simulation environments  
+
+This system demonstrates how traditional clinical scoring methods can be translated into scalable digital health tools.
 
 ---
 
-## Technology Stack
-
-This prototype was developed using lightweight web technologies to demonstrate how clinical workflow tools can be rapidly prototyped in digital health environments.
+## 🧪 Technology Stack
 
 - HTML  
 - CSS  
 - JavaScript  
+- jsPDF (for reporting)
 
 ---
 
-## Project Vision
+## 📚 Scientific References (DOI)
 
-This repository is part of a broader initiative exploring **digital health tools designed to support patient safety, clinical workflow standardization, and structured clinical decision-support environments.**
+- Glasgow Coma Scale  
+https://doi.org/10.1016/S0140-6736(74)91639-0  
 
-By translating traditional clinical safety processes into digital tools, such systems may contribute to safer and more consistent healthcare delivery.
+- Braden Scale  
+https://doi.org/10.1097/00006199-198707000-00002  
+
+- Morse Fall Scale  
+https://doi.org/10.1017/S0714980800008576  
+
+- RASS  
+https://doi.org/10.1164/ajrccm.166.10.2107138  
 
 ---
 
-## Disclaimer
+## 🚧 Project Status
 
-This project is a **prototype created for educational and demonstration purposes only.**
+This project is an early-stage prototype developed to explore the intersection of:
 
-It is **not intended for real clinical decision-making or patient care.**
+- Clinical safety  
+- Digital health systems  
+- Decision support technologies  
+
+Future iterations may include:
+
+- Patient data integration  
+- AI-assisted risk prediction  
+- Dashboard analytics  
+- Mobile application support  
 
 ---
 
-## Author
+## ⚠️ Disclaimer
+
+This system is intended for **educational, research, and demonstration purposes only.**
+
+It is **not intended for real-world clinical decision-making or direct patient care.**
+
+---
+
+## 👨‍⚕️ Author
 
 **Gürkan Çamok**  
 Clinical Innovation & Digital Health Systems  
 
 ---
 
-## License
+## 📄 License
 
-MIT License
+This project is licensed under the MIT License.  
+See the [LICENSE](LICENSE) file for details.
