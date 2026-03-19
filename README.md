@@ -3,7 +3,7 @@
 ![Digital Health](https://img.shields.io/badge/Digital%20Health-Clinical%20Decision%20Support-blue)
 ![Patient Safety](https://img.shields.io/badge/Focus-Patient%20Safety-green)
 ![Healthcare Technology](https://img.shields.io/badge/Domain-HealthTech-purple)
-![Status](https://img.shields.io/badge/Status-Prototype-orange)
+![Status](https://img.shields.io/badge/Status-Live%20Application-success)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
 ---
